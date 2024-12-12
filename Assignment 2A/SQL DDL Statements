@@ -1,0 +1,53 @@
+
+mysql> show databases; 
+5 rows in set (0.02 sec) 
+
+mysql> CREATE DATABASE Employee; 
+Query OK, 1 row affected (0.00 sec) 
+
+mysql> USE Employee; 
+Database changed 
+
+mysql> CREATE TABLE Emp(eno INT(3) PRIMARY KEY,ename VARCHAR(20),address  VARCHAR(20),joindate date,post VARCHAR(20),salary INT(4)); 
+Query OK, 0 rows affected (0.05 sec) 
+
+mysql> desc Emp ; 
+6 rows in set (0.01 sec) 
+
+mysql> CREATE TABLE emp_proj(eno INT(3),project_name VARCHAR(20),address VARCHAR(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc emp_proj; 
+3 rows in set (0.01 sec) 
+
+mysql> CREATE INDEX n1 ON Emp(ename); 
+Query OK, 0 rows affected (0.03 sec) 
+Records: 0 Duplicates: 0 Warnings: 0 
+
+mysql> SELECT * FROM Emp; 
+Empty set (0.00 sec) 
+
+mysql> desc Emp; 
+6 rows in set (0.00 sec) 
+
+mysql> ALTER TABLE Emp ADD INDEX n2(ename); 
+Query OK, 0 rows affected, 1 warning (0.06 sec) 
+Records: 0 Duplicates: 0 Warnings: 1 
+
+mysql> CREATE VIEW v1 AS SELECT ename,post,salary from Emp; 
+Query OK, 0 rows affected (0.01 sec) 
+
+mysql> INSERT INTO Emp VALUES(101,'Akhilesh','Pune','20.11.2021','Clerk',20000);
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> INSERT INTO Emp VALUES(102,'Arjun','Pune','20.10.2022','Manager',50000); 
+Query OK, 1 row affected, 1 warning (0.01 sec) 
+
+mysql> SELECT * FROM Emp; 
+2 rows in set (0.00 sec) 
+
+mysql> SELECT * FROM v1; 
+2 rows in set (0.00 sec) 
+
+mysql> exit 
+Bye
