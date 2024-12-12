@@ -1,0 +1,89 @@
+
+mysql> CREATE DATABASE Industry; 
+Query OK, 1 row affected (0.00 sec) 
+
+mysql> USE Industry; 
+Database changed 
+
+mysql> CREATE TABLE Emp1(Emp_id INT,Ename VARCHAR(10),Address VARCHAR(20),SALARY  INT,Commision INT); 
+Query OK, 0 rows affected (0.04 sec) 
+
+mysql> desc Emp1; 
+5 rows in set (0.00 sec) 
+
+mysql> INSERT INTO Emp1 VALUES  
+(1,"Amit","Pune",35000,5000),(2,"Sneha","Pune",25000,NULL),(3,"Savita","Nashik",28000,2000),(4," Pooja","Mumbai",19000,NULL),(5,"Sagar","Mumbai",25000,3000); 
+Query OK, 5 rows affected (0.01 sec) 
+Records: 5 Duplicates: 0 Warnings: 0 
+
+mysql> SELECT * FROM Emp1;
+5 rows in set (0.00 sec) 
+
+
+------------------------------------------------------------------------ 
+1.Find different locations from where employees belong to?  
+
+
+mysql> SELECT DISTINCT Address FROM Emp1; 
+3 rows in set (0.00 sec) 
+
+------------------------------------------------------------------------ 
+2.What is maximum and minimum salary? 
+
+mysql> SELECT MAX(Salary) as maxSalary,MIN(Salary) as minSalary FROM Emp1; 
+1 row in set (0.00 sec) 
+
+------------------------------------------------------------------------ 
+3.Display the content of employee table according to the  ascending order of salary amount. 
+mysql> SELECT * FROM Emp1 ORDER BY Salary ASC; 
+5 rows in set (0.00 sec) 
+
+------------------------------------------------------------------------ 
+4.Find the name of employee who lived in Nashik or Pune city 
+
+mysql> SELECT Ename FROM Emp1 WHERE Address IN('Nashik','Pune');
+3 rows in set (0.00 sec) 
+
+------------------------------------------------------------------------
+5.Find the name of employees who does not get commission 
+
+mysql> SELECT Ename FROM Emp1 WHERE Commision IS NULL; 
+2 rows in set (0.00 sec) 
+
+------------------------------------------------------------------------
+6.Change the city of Amit to Nashik. 
+
+mysql> UPDATE Emp1 set Address='Nashik' WHERE Ename='Amit'; 
+Query OK, 1 row affected (0.01 sec) 
+Rows matched: 1 Changed: 1 Warnings: 0 
+
+------------------------------------------------------------------------ 
+7.Find the information of employees whose name starts with A. 
+
+mysql> SELECT * FROM Emp1; 
+5 rows in set (0.00 sec) 
+
+mysql> SELECT * FROM Emp1 WHERE Ename LIKE 'A%';
+1 row in set (0.00 sec) 
+
+------------------------------------------------------------------------ 
+9.Find the count of staff from each city. 
+
+mysql> SELECT COUNT(*) as staffcount FROM Emp1 WHERE Address='Mumbai'; 
+1 row in set (0.00 sec) 
+
+mysql> SELECT Address,COUNT(*) as staffcount FROM Emp1 GROUP BY Address; 
+3 rows in set (0.00 sec) 
+
+mysql> CREATE TABLE Project (Prno INT, Addr VARCHAR(20)); 
+Query OK, 0 rows affected (0.06 sec) 
+
+mysql> INSERT INTO Project VALUES (10,"Mumbai"),(20,"Nashik"),(30,"Delhi"); Query OK, 3 rows affected (0.00 sec) 
+Records: 3 Duplicates: 0 Warnings: 0 
+3 rows in set (0.00 sec) 
+
+------------------------------------------------------------------------
+10.Find the address from where employees are belonging as well  as where projects are going on. 
+
+mysql> SELECT Address AS Location FROM Emp1 UNION SELECT Addr AS Location FROM Project; 
+4 rows in set (0.00 sec)
